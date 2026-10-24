@@ -1,6 +1,6 @@
 # Blender ArmorPaint Livelink
 
-> **Fork note:** the [original repository](https://github.com/PiloeGAO/Blender-ArmorPaintLiveLink) was archived in September 2023 and no longer works on current Blender. This fork keeps the add-on working on **Blender 4.0 and newer** (tested the export on Blender 5.2.2). Changes from the original:
+> **Fork note:** the [original repository](https://github.com/PiloeGAO/Blender-ArmorPaintLiveLink) was archived in September 2023 and no longer works on current Blender. This fork keeps the add-on working on **Blender 4.0 and newer** (tested on Blender 5.2.2 on macOS: OBJ export and launching ArmorPaint both work). Changes from the original:
 >
 > - Uses `bpy.ops.wm.obj_export`, because the old `bpy.ops.export_scene.obj` exporter was removed in Blender 4.0 (the error was `Calling operator "bpy.ops.export_scene.obj" error, could not be found`).
 > - On macOS, you can set the ArmorPaint path to the `.app` bundle (for example `/Applications/ArmorPaint.app`). The add-on launches the executable inside it, avoiding `PermissionError: [Errno 13]`.
