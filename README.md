@@ -1,5 +1,10 @@
 # Blender ArmorPaint Livelink
 
+> **Fork note:** the [original repository](https://github.com/PiloeGAO/Blender-ArmorPaintLiveLink) was archived in September 2023 and no longer works on current Blender. This fork keeps the add-on working on **Blender 4.0 and newer** (tested the export on Blender 5.2.2). Changes from the original:
+>
+> - Uses `bpy.ops.wm.obj_export`, because the old `bpy.ops.export_scene.obj` exporter was removed in Blender 4.0 (the error was `Calling operator "bpy.ops.export_scene.obj" error, could not be found`).
+> - On macOS, you can set the ArmorPaint path to the `.app` bundle (for example `/Applications/ArmorPaint.app`). The add-on launches the executable inside it, avoiding `PermissionError: [Errno 13]`.
+
 *The project is not under active development, fix updates are made as soon as possible (please consider [donating](https://github.com/PiloeGAO/Blender-ArmorPaintLiveLink#Donation) for faster updates)*
 
 This addon is the current implementation of live link for [ArmorPaint](http://www.armorpaint.org) inside of Blender 2.8+
@@ -8,7 +13,7 @@ This addon is the current implementation of live link for [ArmorPaint](http://ww
 
 ### Prerequisites
 
-Download latest version of Blender (v. 2.80 minimum) and ArmorPaint V0.8.
+Download latest version of Blender (v. 2.80 minimum, 4.0+ supported by this fork) and ArmorPaint V0.8.
 
 ### Installing
 
@@ -43,6 +48,6 @@ This project is licensed under the GNU GPLv3 License - see the [LICENSE.md](LICE
 
 ## Donation
 
-You can support this project by making a donation.
+The link below goes to the original author, PiloeGAO. You can support this project by making a donation.
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VXD77HL4GZNP6)
