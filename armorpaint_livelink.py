@@ -281,6 +281,10 @@ class ArmorPaintLivelinkOperator(Operator):
         scn = context.scene
         Prefs = context.preferences.addons[__name__].preferences
         path_exe = Prefs.path_exe
+        # macOS: a .app bundle is a folder, run the executable inside it
+        if path_exe.rstrip('/').endswith('.app'):
+            app = path_exe.rstrip('/')
+            path_exe = os.path.join(app, 'Contents', 'MacOS', os.path.basename(app)[:-4])
         path_dir = dirname(Prefs.path_exe)
         
         typM = context.active_object.type
@@ -315,29 +319,26 @@ class ArmorPaintLivelinkOperator(Operator):
         
             # Export current object as obj and open it in armorpaint
             # Export the object as Obj and save it in the correct directory
-            bpy.ops.export_scene.obj(filepath=path_tmp,
-                                    check_existing=True,
-                                    axis_forward='-Z',
-                                    axis_up='Y',
-                                    filter_glob="*.obj;*.mtl",
-                                    use_selection=True,
-                                    use_animation=False,
-                                    use_mesh_modifiers=True,
-                                    use_edges=True,
-                                    use_smooth_groups=True,
-                                    use_smooth_groups_bitflags=False,
-                                    use_normals=True,
-                                    use_uvs=True,
-                                    use_materials=True,
-                                    use_triangles=False,
-                                    use_nurbs=False,
-                                    use_vertex_groups=False,
-                                    use_blen_objects=True,
-                                    group_by_object=False,
-                                    group_by_material=False,
-                                    keep_vertex_order=False,
-                                    global_scale=1,
-                                    path_mode='AUTO')
+            bpy.ops.wm.obj_export(filepath=path_tmp,
+                                  check_existing=True,
+                                  forward_axis='NEGATIVE_Z',
+                                  up_axis='Y',
+                                  filter_glob="*.obj;*.mtl",
+                                  export_selected_objects=True,
+                                  export_animation=False,
+                                  apply_modifiers=True,
+                                  export_smooth_groups=True,
+                                  smooth_group_bitflags=False,
+                                  export_normals=True,
+                                  export_uv=True,
+                                  export_materials=True,
+                                  export_triangulated_mesh=False,
+                                  export_curves_as_nurbs=False,
+                                  export_vertex_groups=False,
+                                  export_object_groups=False,
+                                  export_material_groups=False,
+                                  global_scale=1,
+                                  path_mode='AUTO')
 
             #Launch ArmorPaint
             subprocess.Popen([path_exe,path_tmp])
